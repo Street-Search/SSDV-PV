@@ -49,18 +49,60 @@ function playAudio() {
   x.play(); 
 }
 
-  // SIGN
 
-function sign1() {
-  window.location.href="sign/sign-in.html"
-  // x.play(); 
-  // alert("Vous n'êtes pas connecté")
-}
-function sign2() {
-  window.location.href="sign/sign-up.html"
-  // x.play(); 
-  // alert("Vous n'êtes pas connecté")
-}
+  //ANIMATION TRANSITION PAGES
+
+  const linksTarget = document.querySelectorAll('.link-animated');
+
+// définit la durée de l'animation (en millisecondes)
+const TIME_ANIMATE = 800;
+
+// pour chaque lien cible
+linksTarget.forEach(linkTarget => {
+  // ajoute un écouteur de clic
+  linkTarget.addEventListener('click', function(event) {
+    // annule le comportement par défaut du lien
+    event.preventDefault();
+
+    // ajoute une classe "active" sur le lien cliqué
+    this.classList.add('active');
+
+    // crée un élément de remplissage de cercle
+    const fillCircle = document.createElement('div');
+    fillCircle.classList.add('fill-circle');
+
+    // ajoute l'élément de remplissage de cercle au corps de la page
+    document.body.appendChild(fillCircle);
+
+    // attend la fin de l'animation avant de charger la cible du lien
+    setTimeout(() => {
+      const href = this.getAttribute('href');
+      window.location.href = href;
+
+      // ajoute une classe "filled" au corps de la page
+      document.body.classList.add('filled');
+
+      // supprime l'élément de remplissage de cercle de la page
+      document.body.removeChild(fillCircle);
+    }, TIME_ANIMATE);
+  });
+});
+
+
+
+
+//   // SIGN
+
+// function sign1() {
+//   window.location.href="sign/sign-in.html"
+//   // x.play(); 
+//   // alert("Vous n'êtes pas connecté")
+// }
+// function sign2() {
+//   window.location.href="sign/sign-up.html"
+//   // x.play(); 
+//   // alert("Vous n'êtes pas connecté")
+// }
 
 
   // ERROR

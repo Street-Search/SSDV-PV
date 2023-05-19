@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 *{
     margin: 0;
@@ -20,6 +20,46 @@ html::-webkit-scrollbar-thumb{
 }
 html::-webkit-scrollbar-track{
     background-color: #ccc;
+}
+
+/* ANIMATION TRANSITION PAGE */
+
+
+/* LIEN CLIQUE */
+
+/* Définit une animation de remplissage de cercle avec une durée de 0,8 seconde */
+@keyframes fill {
+    0% {transform: scale(0);}
+    10%{transform: scale(1); width: 30px; height: 30px;}
+    50%{transform: scale(1); width: 500px; height: 500px;}
+    100%{transform: scale(4); width: 100%; height: 100%;}
+  }
+  
+  /* Ajoute la classe "fill-circle" pour déclencher l'animation */
+  .fill-circle {
+    z-index: 100;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    width: 0%;
+    height: 0%;
+    border-radius: 50%;
+    background-color: #5230B4;
+    animation: fill .8s ease-out forwards;
+  }
+
+/* DEMARAGE PAGE */
+
+.cicle-transi{
+    z-index: 100;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    width: 0%;
+    height: 0%;
+    border-radius: 50%;
+    background-color: #5230B4;
+    animation: fill .8s ease-out reverse forwards;
 }
 
 html, body{
@@ -94,7 +134,18 @@ nav{
     margin-right: 15px;
     margin-left: 15px;
     transform: translateY(-100px);
+    transition: all 0.1s;    
 }
+.ancre a:hover{
+    padding-bottom: 5px;
+    transition: all 0.1s;   
+}
+.ancre a:nth-child(4):hover{
+    padding: 0;
+    border-radius: 50px;
+    transition: all 0s;   
+}
+
 .ancre a:nth-child(1){
     animation: nav 1s .4s forwards;
 }
@@ -173,6 +224,20 @@ nav{
     position: relative;
     height: 120px;
 }
+@media (min-width:600px) {
+    span:nth-child(1):hover{
+    scale: 1.1;
+    cursor: default;
+}
+span:nth-child(2):hover{
+    scale: 1.2;
+    cursor: default;
+}
+span:nth-child(3):hover{
+    scale: 1.1;
+    cursor: default;
+}
+
 span{
     position: absolute;
     letter-spacing: 0em;
@@ -182,20 +247,22 @@ span:nth-child(1){
     left: 0;
     transform-origin: right;
     transform: translate(100px, -2750px) rotate(180deg);
-    animation: title-r .7s .1s forwards;
+    animation: title-r .7s .4s forwards;
 }
 span:nth-child(2){
     left: 44%;
     transform: translateY(-2750px);
-    animation: title-c 1s .3s forwards;
+    animation: title-c 1s .7s forwards;
 }
-span:nth-child(3){
+span:nth-child(3) {
     right: 0;
     transform-origin: left;
-    /* transform: translate(100px, -2750px); */
-    transform: translate(200px, -0);
-    animation: title-l .5s .1s linear forwards;
+    transform: translateX(200px);
+     /* transform: translate(100px, -2750px); */   
+    animation: title-l .5s .2s linear forwards;
 }
+}
+
 @keyframes title-r {
     0%{transform: translate(-100px,-2750px);}
     33%{transform: translate(-100px, 0px) rotate(-180deg);}
@@ -214,10 +281,19 @@ span:nth-child(3){
     40%{transform: translate(100px, -70px) rotate(90deg); letter-spacing: 0.1em;}
     66%{transform: translate(50px, -120px) rotate(-90deg)}
     100%{transform: translate(0px, 0px) rotate(-360deg);} */
-    0%{transform: translate(200px, -0);}
-    50%{transform: translate(-10px, -0); letter-spacing: -0.2em;}
-    100%{transform: translate(0px, 0px) rotate(0deg);}
+    
+    /* 0%{transform: translate(200px, -0);}
+    30%{transform: translate(-0px, -0);}
+    50%{transform: translate(-60px, -0); letter-spacing: -0.2em;}
+    70%{transform: translate(80px, -0); transform-origin: right; letter-spacing: 0.2em;}
+    100%{transform: translate(0px, 0px) rotate(0deg);} */
+
+    0%{transform: translateX(250px) rotate(-200deg); letter-spacing: -1em;}
+    100%{transform: translateX(0) rotate(0);letter-spacing: 0em;}
 }
+
+
+
 
 
 #Connect .txt{
@@ -512,42 +588,57 @@ span:nth-child(3){
         transform: translate(-50%, 20px);
     }
 }
+.réseaux1 a,
+.réseaux2 a,
+.réseaux3 a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 23px;
+    width: 23px;
 
-
+    padding: 5px;
+    border-radius: 50px;
+    /* background-color: #e9e9e9; */
+    background-color: #ccc;
+}
 
 .réseaux1{
     display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: auto;
     width: 30px;
     height: 30px;
     font-size: 20px;
     
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 50px;
     color: #5230B4;
     background: #F2F1FF;
 }
 .réseaux2{
     display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: auto;
     width: 60px;
     height: 30px;
     font-size: 20px;
     
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 50px;
     color: #5230B4;
     background: #F2F1FF;
 }
 .réseaux3{
     display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: auto;
-    width: 90px;
+    width: 117px;
     height: 30px;
     font-size: 20px;
     
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 50px;
     color: #5230B4;
     background: #F2F1FF;
 }
@@ -840,7 +931,7 @@ span:nth-child(3){
         padding: 5px;
         box-shadow:0px 1px 3px 1px #555;
 
-        animation: slide-up 5s infinite;
+        animation: slide-up 10s infinite;
       }
 
       .chat-text.d{
@@ -1106,7 +1197,7 @@ span:nth-child(3){
     h1,h2,h3{
         font-size: 20px;
     }
-    p,a{
+    p{
         font-size: 11px;
     }
 

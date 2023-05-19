@@ -11,6 +11,48 @@
     list-style: none;
 }
 
+/* ANIMATION TRANSITION PAGE */
+
+
+/* LIEN CLIQUE */
+
+/* Définit une animation de remplissage de cercle avec une durée de 0,8 seconde */
+@keyframes fill {
+    0% {transform: scale(0);}
+    10%{transform: scale(1); width: 30px; height: 30px;}
+    50%{transform: scale(1); width: 500px; height: 500px;}
+    100%{transform: scale(3); width: 100%; height: 100%;}
+  }
+  
+  /* Ajoute la classe "fill-circle" pour déclencher l'animation */
+  .fill-circle {
+    z-index: 100;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    width: 0%;
+    height: 0%;
+    border-radius: 50%;
+    background-color: #5230B4;
+    animation: fill .8s ease-out forwards;
+  }
+
+/* DEMARAGE PAGE */
+
+.cicle-transi{
+    z-index: 100;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    width: 0%;
+    height: 0%;
+    border-radius: 50%;
+    background-color: #5230B4;
+    animation: fill .8s ease-out reverse forwards;
+}
+
+
+
 html::-webkit-scrollbar{
     width: 10px;
 }
@@ -473,10 +515,71 @@ section::-webkit-scrollbar-track{
     }
 }
 
-
-
-
 .content3{
+    display: flex;
+    justify-content: center;
+    height:500px;
+    margin: 10px;
+    margin-bottom: 200px;
+}
+
+.content3 .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    padding: 40px;
+    border-radius: 15px;
+    background-color: #5230b45c;
+}
+.content3 .box form{
+    width: 80%;
+    height: 100%;
+}
+.content3 .box input{
+    width: 100%;
+    margin: 5% 0px 5% 0px;
+}
+.content3 .box .btn{
+    height: 50%;
+    position: relative;
+    border-radius: 15px;
+}
+.content3 .box .btn input{
+    height: 0px;
+    font-size: 110%;
+    margin: 0;
+    margin-top: 199px;
+    opacity: 0;
+
+    padding: 10px;
+    transition: 0.2s;
+    background-color: #fff;
+}
+.content3 .box .btn .icon{
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    right: 50%;
+    font-size: 200%;
+    color: #fff;
+}
+
+.content3 .box .btn:hover input {
+    opacity: 100;
+    height: 100%;
+    margin: 0;
+    transition: 0.5s;
+    background-color: #000;
+}
+
+
+
+
+
+.content4{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 20px;
@@ -499,7 +602,7 @@ section::-webkit-scrollbar-track{
     width: 50px;
     height: 50px;
     margin: 10px;
-    background-color: red;
+    background-color: #EC8E8E;
     border-radius: 50%;
 }
 .Ypoints.active{
@@ -556,12 +659,12 @@ section::-webkit-scrollbar-track{
 
 
 
-.content4{
+.content5{
     height: 300px;
     margin: 10px;
 }
 
-.content4 section{
+.content5 section{
     width: 100%;
     height: 100%;
     padding: 20px;
@@ -570,7 +673,7 @@ section::-webkit-scrollbar-track{
     border-radius: 15px;
     background-color: #5230b45c;
 }
-.content4 .Fpoints{
+.content5 .Fpoints{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -581,15 +684,15 @@ section::-webkit-scrollbar-track{
     border-radius: 15px;
     background-color: #fff;
 }
-.content4 .Fpoints .color{
+.content5 .Fpoints .color{
     height: 30px;
     width: 30px;
 }
-.content4 .Fpoints p{
+.content5 .Fpoints p{
     margin-right: auto;
 }
 @media (max-width: 1000px){
-    .content4 .Fpoints{
+    .content5 .Fpoints{
         margin-bottom: 10px;
     }
 }

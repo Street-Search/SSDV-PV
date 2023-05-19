@@ -4,9 +4,10 @@ require('../action_php/config.php');
 
 // Check if the user is logged in
 if (!isset($_SESSION['email'])) {
-    header("Location: ../sign-in.html");
+    header("Location: ../sign-in.php");
     exit();
 }
+
 
 // Retrieve the username of the logged in user from the database
 $email = $_SESSION['email'];
@@ -16,6 +17,7 @@ $result = mysqli_query($conn, $query);
 
 // Extract the username from the result set
 if ($row = mysqli_fetch_assoc($result)) {
+    $userID = $row['id'];
     $username = $row['username'];
     $user_mail = $row['email'];
     $user_pwd = $row['password'];
@@ -24,7 +26,34 @@ if ($row = mysqli_fetch_assoc($result)) {
 else {
     $username = 'unknown';
 }
+
+//Retreive the friends' user of the logged in user from the database
+$friend_query = "SELECT users.username, friend_request.sender
+                 FROM friend_request
+                 INNER JOIN users ON friend_request.sender = users.id
+                 WHERE friend_request.receiver = $userID";
+$friend_result = mysqli_query($conn, $friend_query);
+
+// Vérifier si la requête a réussi
+if ($result && mysqli_num_rows($friend_result) > 0) {
+    $output = '<ul class="friend_request">';
+    while ($row = mysqli_fetch_assoc($friend_result)) {
+        $senderID = $row['sender'];
+        $senderName = $row['username'];
+        $receiverID = $userID;
+
+        $output .= '<li>Demande d\'ami de '.$senderName.'</li>';
+        $output .= '<li><a href="accept_friend_request.php?request='.$senderID.'">Accepter</a></li>';
+        $output .= '<li><a href="reject_friend_request.php?request='.$senderID.'">Refuser</a></li>';
+    }
+    $output .= "</ul>";
+} else {
+    $output = "Aucune demande d'ami reçue.";
+}
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,9 +71,14 @@ else {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 </head>
 <body>
+
+    <!-- Cirlce Transition -->
+
+    <div class="cicle-transi"></div>
+    
     <nav>
         <div class="logo"><img src="../../img/mascote/mascote2.png" alt="logo street-search">&#8192;<h3 translate="no">Street-Search</h3></div>
-        <div class="ancre"><a href="../../index.php">Home</a> <a href="../../map.php">Maps</a> <a onclick="error()" href="#">Chat</a> <a onclick="error()" href="#"><img src="../../img/pp/pp.png" alt="pp-Compte"></a></div>
+        <div class="ancre"><a href="../../index.php">Home</a> <a href="../../map.php">Maps</a> <a href="../../chat.php">Chat</a> <a href="#" onclick="window.location.reload(true);"><img src="../../img/pp/pp.png" alt="pp-Compte"></a></div>
     </nav>
 
     <!-- TITLE -->
@@ -76,7 +110,7 @@ else {
             </div>
         </div>
 
-        <h2>* Public informations</h2>
+<h2>* Public informations</h2>
 <div class="content2">
     <aside>
         <form method="POST" action="../action_php/avatar.php" enctype="multipart/form-data" id="image-form">
@@ -108,49 +142,71 @@ else {
                 <textarea style="resize: none;" placeholder="Write your description"></textarea>
                 <div class="btn"><input type="reset" value="Reset"></input><input type="submit" value="Save"></input></div>
         </form>    
-                <b>Want to talk ?</b>
-                <input type="text" placeholder="Send a message">
-            </aside>
+            <b>Want to talk ?</b>
+            <input type="text" placeholder="Send a message">
+    </aside>
             
-            <section class="friends">
-                <div class="Fbox"><img src="../../img/mascote/mascote2.png" alt="PP-Friends"><p>Your future friend</p><button><i class="fa-solid fa-xmark"></i></button></div>
-                <!-- <div class="Fbox"><img src="../../img/pp/ppFat.png" alt="PP-Friends"><p>{Friend username}</p><button><i class="fa-solid fa-xmark"></i></button></div> -->
-            </section>
-        </div>
+    <section class="friends">
+        <div class="Fbox"><img src="../../img/mascote/mascote2.png" alt="PP-Friends"><p><?php echo $output; ?></p><button><i class="fa-solid fa-xmark"></i></button></div>
+        <!-- <div class="Fbox"><img src="../../img/pp/ppFat.png" alt="PP-Friends"><p>{Friend username}</p><button><i class="fa-solid fa-xmark"></i></button></div> -->
+        
+    </section>
+</div>
 
-        <h2>* Your Points</h2>
-        <div class="content3">
-            <div class="Ypoints">
-                <div class="en-tete">
-                    <div class="color"></div>
-                    <div class="txt"><p>Ex: Point name</p><p>Ex: Point's adress</p></div>
-                </div>
-                <form method="post" class="YP-add">
-                    <b>Description</b>
-                    <textarea style="resize: none;" placeholder="Write description of the points"></textarea>
-                    <div class="btn"><input type="reset" value="Reset"></input><input type="submit" value="Done"></input></div>
-                </form>
-            </div>
-            <!-- <div class="Ypoints">
-                <div class="en-tete">
-                    <div class="color"></div>
-                    <div class="txt"><p>{Point name}</p><p>{Point's adress}</p></div>
-                </div>
-                <form method="post" class="YP-add">
-                    <b>Description</b>
-                    <textarea style="resize: none;" placeholder="Write description of the points"></textarea>
-                    <div class="btn"><input type="reset" value="Reset"></input><input type="submit" value="Done"></input></div>
-                </form>
-            </div> -->
-        </div>
 
-        <h2>* Friends' points</h2>
-        <div class="content4">
-            <section class="box">
-                <div class="Fpoints"><div class="color"></div><p>Future friend Point name</p></div>
-                <!-- <div class="Fpoints"><div class="color"></div><p>{Friend Point name}</p></div> -->
-            </section>
+
+<h2>* Add Friends</h2>
+<div class="content3">
+    <div class="box">
+        <p>You went add your friend for chat  with him</p>
+        <!-- <form method="post" action="../action_php/add_friend.php">
+            <input placeholder="Tape name of your futur friend" type="text" id="username" name="username">
+            <div class="btn"><input type="submit" value="Send Your invitation"><div class="icon"><i class="fa-solid fa-user-plus"></i></div></div>
+        </form> -->
+        <form method="post" action="../action_php/add_friend.php">
+            <input placeholder="Tape name of your friend" type="text" id="username" name="username">
+            <div class="btn"><input type="submit" value="Send Your invitation"><div class="icon"><i class="fa-solid fa-user-plus"></i></div></div>
+        </form>
+
+
+
+    </div>
+</div>
+
+
+<h2>* Your Points</h2>
+<div class="content4">
+    <div class="Ypoints">
+        <div class="en-tete">
+            <div class="color"></div>
+            <div class="txt"><p>Ex: Point name</p><p>Ex: Point's adress</p></div>
         </div>
+        <form method="post" class="YP-add">
+            <b>Description</b>
+            <textarea style="resize: none;" placeholder="Write description of the points"></textarea>
+            <div class="btn"><input type="reset" value="Reset"></input><input type="submit" value="Done"></input></div>
+        </form>
+    </div>
+    <!-- <div class="Ypoints">
+        <div class="en-tete">
+            <div class="color"></div>
+            <div class="txt"><p>{Point name}</p><p>{Point's adress}</p></div>
+        </div>
+        <form method="post" class="YP-add">
+            <b>Description</b>
+            <textarea style="resize: none;" placeholder="Write description of the points"></textarea>
+            <div class="btn"><input type="reset" value="Reset"></input><input type="submit" value="Done"></input></div>
+        </form>
+    </div> -->
+</div>
+
+<h2>* Friends' points</h2>
+<div class="content5">
+    <section class="box">
+        <div class="Fpoints"><div class="color"></div><p>Future friend Point name</p></div>
+        <!-- <div class="Fpoints"><div class="color"></div><p>{Friend Point name}</p></div> -->
+    </section>
+</div>
     </section>
 
         <!-- FOOTER -->

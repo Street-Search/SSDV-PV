@@ -38,5 +38,6 @@ document.addEventListener("click", (event) => {
   // ERROR
 
 function error() {
-  alert("This page is unavailable.")
+  //alert("This page is unavailable.")
+  alert("This page is a test for the moment. It's not interactive")
 }

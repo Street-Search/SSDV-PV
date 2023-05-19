@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('action_php/config.php');
+require('sign/action_php/config.php');
 
 // Check if the user is logged in
 if (!isset($_SESSION['email'])) {
@@ -39,8 +39,6 @@ else {
     <link rel="stylesheet" href="css/map.css">
     <script src="js/map.js" defer></script>
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
                                       <!-- Librairie -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -59,7 +57,7 @@ else {
 
     <!-- Map -->
 
-<div id="mapid"></div>
+        <div id="mapid"></div>
 
     <!-- Info Page -->
 <div class="height-page">
@@ -70,32 +68,45 @@ else {
         <div class="en-tete">
             <div class="other">
                 <img src="<?php echo $pp_user ?>" alt="pp-user">
+
+                <div class="menu-btn">
+                    <div class="menu-btn__burger1"></div>
+                    <div class="menu-btn__burger2"></div>
+                    <div class="menu-btn__burger3"></div>
+                </div>
+                <div class="menu">
+                    <div class="menu-header">
+                      <h3>Navigation Menu</h3>
+                      <button class="menu-close-btn">&times;</button>
+                    </div>
+                    <ul>
+                        <li class="ancre"><a href="index.php">Home</a></li>
+                        <li class="ancre"><a href="/sign/members/members.php">Settings</a></li>
+                        <li class="ancre"><a href="chat.php">Chat</a></li>
+                    </ul>
+                  </div>
+                                         
             </div>
-            <div class="txt">
-                <p><?php echo $username ?></p>
-                <p><!--Mettre $Number_of_friends--></p>
+            <div class="name-search-content">
+                <div class="txt">
+                    <p><?php echo $username ?></p>
+                    <p><!--Mettre $Number_of_friends--></p>
+                </div>
+                <form class="search">
+                    <input id="search" name="search" type="search" placeholder="Search a place">
+                    <button class="icon" onclick="search()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
             </div>
-            <form class="search">
-                <input id="recherche" type="search" placeholder="Search a place">
-                <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-            </form>
         </div>
-        <form class="search2">
-            <input id="recherche" type="search" placeholder="Search a place">
-            <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-        </form>
         <div class="btn-box">
-            <button id="Parc">Parc</button> <button>Town</button> <button>Hall</button> <button>Transport</button>
-        </div>
-        <div class="nav2">
-            <div class="ancre"><a href="index.php">Home</a> <a href="/sign/members/members.php">Settings</a> <a href="#">Chat</a></div>
+            <button onclick="addPark()" id="Parc">Park</button> <button onclick="addTown()" id="Town">Town</button> <button onclick="addHalls()" id="Hall">Hall</button> <button>Transport</button>
         </div>
     </aside>
 
         <!-- NavBar = Nav -->
 
     <nav>
-        <div class="ancre"><a href="index.php">Home</a> <a href="/sign/members/members.php">Settings</a> <a href="#">Chat</a></div>
+        <div class="ancre"><a href="index.php">Home</a> <a href="/sign/members/members.php">Settings</a> <a href="chat.php">Chat</a></div>
     </nav>
 </div>
 </body>

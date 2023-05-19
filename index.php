@@ -10,9 +10,7 @@
 
     <link rel="stylesheet" href="css/style.css">
     <script src="js/app.js" defer></script>
-                                      <!-- FONT -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
 
                                       <!-- Librairie -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
@@ -28,11 +26,16 @@
         <source src="/song/click-song1.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Cirlce Transition -->
+
+    <div class="cicle-transi"></div>
+
+
     <!-- NavBar = Nav -->
 
 <nav>
     <div class="logo"><img src="img/mascote/mascote2.png" alt="logo street-search">&#8192;<h3 translate="no">Street-Search</h3></div>
-    <div class="ancre"><a href="#Team">Team</a> <a href="#Description">Description</a> <a href="#Contact">Contact</a> <a href="/sign/members/members.php"><img src="../../img/pp/pp.png" alt="pp-Compte"></a></div>
+    <div class="ancre"><a href="#Team">Team</a> <a href="#Description">Description</a> <a href="#Contact">Contact</a> <a class="link-animated" href="/sign/members/members.php"><img src="img/pp/pp.png" alt="pp-Compte"></a></div>
 </nav>
 
     <!-- Main 1 = Connect -->
@@ -45,10 +48,10 @@
         <br><br>
         <p>Search your perfect teammate for street workout</p>
 
-        <button class="btn" id="btn1" onclick="sign1()" >Sign-in</button>
-        <button class="btn" id="btn2" onclick="sign2()" >Sign-up</button>
+        <button class="link-animated" id="btn1" href="sign/sign-in.php">Sign-in</button>
+        <button class="link-animated" id="btn2" href="sign/sign-up.php">Sign-up</button>
     </aside>
-    <div class="container"><img src="/img/Maps.png" alt="Maps bloc"> <img src="../img/mascote/mascote3aM.png" alt="mascote"> </div>  
+    <div class="container"><img src="img/Maps.png" alt="Maps bloc"> <img src="img/mascote/mascote3aM.png" alt="mascote"> </div>  
 </main>
 
     <!-- Main 2 = Team -->
@@ -70,7 +73,7 @@
             </div>
             <div class="réseaux2">
               <a href="https://www.tiktok.com/@lolo_and_cuic" target="_blank"><i class="fa-brands fa-tiktok"></i></a> &#8192;
-              <a href="https://www.instagram.com/parkour.cuic" target="_blank"><i class="fab fa-instagram"></i></a> &#8192;
+              <a href="https://www.instagram.com/parkour.cuic" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
           
 
@@ -92,7 +95,7 @@
               </div>
               <aside><img class="" src="/img/mascote/mascote3aM.png" alt="mascote avec montagne"></aside>
               <footer>
-                <a href="https://street-search.000webhostapp.com/index.php">Street-Search.com</a><a href="disord.gg">discord.gg/FVHKzQMtkA</a>
+                <a class="link-animated" href="https://street-search.000webhostapp.com/index.php">Street-Search.com</a><a href="disord.gg">discord.gg/FVHKzQMtkA</a>
               </footer>
             </div>
 
@@ -109,7 +112,7 @@
               <p>Hello I'm Hacked Storm, I am a front-end developer. if you want a website contact me.</p>
             </div>
             <div class="réseaux1">
-              <a href="https://philibert-gentien.great-site.net/index.html" target="_blank"><i class="fa-solid fa-globe"></i></a> &#8192;
+              <a href="https://philibert-gentien.great-site.net/index.html" target="_blank"><i class="fa-solid fa-globe"></i></a>
             </div>
 
             <!-- VISITE CARD -->
@@ -130,7 +133,7 @@
                 </div>
                 <aside><img src="/img/mascote/mascote3aM.png" alt="mascote avec montagne"></aside>
                 <footer>
-                    <a href="https://street-search.000webhostapp.com/index.php">Street-Search.com</a><a href="disord.gg">discord.gg/FVHKzQMtkA</a>
+                    <a class="link-animated" href="https://street-search.000webhostapp.com/index.php">Street-Search.com</a><a href="disord.gg">discord.gg/FVHKzQMtkA</a>
                 </footer>
             </div>
 
@@ -145,7 +148,7 @@
                 <p>Howdy fellow people! It is I, indeed : y'all's worst nightmare! I'm a french teen artist, writer and voice actor (for his very own projects)!</p>
             </div>
             <div class="réseaux1">
-                <a href="https://twitter.com/TheKakiB"><i class="fa-brands fa-twitter"></i></a> &#8192;
+                <a href="https://twitter.com/TheKakiB" target="_blank"><i class="fa-brands fa-twitter"></i></a>
             </div>
 
                       <!-- VISITE CARD -->
@@ -166,7 +169,7 @@
                 </div>
                 <aside><img src="/img/mascote/mascote3aM.png" alt="mascote avec montagne"></aside>
                 <footer>
-                    <a href="https://street-search.000webhostapp.com/index.php">Street-Search.com</a><a href="disord.gg">discord.gg/FVHKzQMtkA</a>
+                    <a class="link-animated" href="https://street-search.000webhostapp.com/index.php">Street-Search.com</a><a href="disord.gg">discord.gg/FVHKzQMtkA</a>
                 </footer>
               </div>
 
@@ -185,7 +188,7 @@
         </div>
         <div class="réseaux2">
             <a href="https://www.tiktok.com/@ogloriso"><i class="fa-brands fa-tiktok"></i></a> &#8192;
-            <a href="https://www.instagram.com/timeo_vlp.mrt" target="_blank"><i class="fab fa-instagram"></i></a> &#8192;
+            <a href="https://www.instagram.com/timeo_vlp.mrt" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
 
@@ -196,7 +199,7 @@
             <p>Hello, my name is Loïc with umlauts. I like sports a lot, I play handball. I love video games like Rocket League and Fortnite</p>
         </div>
         <div class="réseaux1">
-            <a href="https://twitter.com/TheKakiB"><i class="fa-brands fa-twitter"></i></a> &#8192;
+            <a href="https://twitter.com/TheKakiB"><i class="fa-brands fa-twitter"></i></a>
         </div>
     </div>
 
@@ -207,7 +210,7 @@
             <p>Hello I'm here</p>
         </div>
         <div class="réseaux1">
-            <a href="https://twitter.com/TheKakiB"><i class="fa-brands fa-twitter"></i></a> &#8192;
+            <a href="https://twitter.com/TheKakiB"><i class="fa-brands fa-twitter"></i></a>
         </div>
     </div>
 </div>
@@ -233,7 +236,7 @@
                 -We offer you great products to improve your street-workout <br><br>
                 -There is also a direct access to Maps <br><br>
                 -We also list all your friends and new messages</p>
-                <img src="/img/Coming_Soon_V.2.jpg" alt="comming soon">
+                <img src="img/Coming_Soon_V.2.jpg" alt="comming soon">
             </div>
 
 
@@ -361,6 +364,18 @@
 </div>
 </main>
 
+
+<main>
+  <form method="post" action="">
+    <input type="text" name="pseudo">
+    <br>
+    <textarea name="message"></textarea>
+    <br>
+    <input type="submit" value="send" name="valider">
+  </form>
+  <section id="message"></section>
+</main>
+
     <!-- FOOTER -->
 
 <footer id="Footeur">
@@ -376,8 +391,8 @@
 
 <div class="annonce">
     
-    <button onclick="vote()" class="box"><p>NEW UPDATE, ANIMATION UPDATE👌</p></button>
-    <img src="/img/mascote/mascote3sM.png" alt="annonce">
+    <button onclick="vote()" class="box"><p>NEW UPDATE, MAP DISPONIBLE🗺️</p></button>
+    <img src="img/mascote/mascote3sM.png" alt="annonce">
 </div>
 
 </body>
